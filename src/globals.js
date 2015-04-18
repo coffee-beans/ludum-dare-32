@@ -2,6 +2,8 @@ var g_groundHeight = 57;
 var g_runnerStartX = 80;
 var g_runningSpeed = 200;
 
+var g_secondsToCatchNinja = 60 * 60 * 3; // 60fps * 60 seconds * 3 = 3 minutes
+
 var g_ninjaGroundHeight = 77;
 
 if(typeof TagOfLayer == "undefined") {
