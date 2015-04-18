@@ -14,7 +14,8 @@ var res = {
     restart_s_png : "res/restart_s.png",
     background_mp3 : "res/background.mp3",
     jump_mp3 : "res/jump.mp3",
-    pickup_coin_mp3 : "res/pickup_coin.mp3"
+    pickup_coin_mp3 : "res/pickup_coin.mp3",
+    toast_mp3: "res/toast.mp3"
 };
 
 var g_resources = [
@@ -34,5 +35,6 @@ var g_resources = [
     res.restart_s_png,
     res.background_mp3,
     res.jump_mp3,
-    res.pickup_coin_mp3
+    res.pickup_coin_mp3,
+    res.toast_mp3
 ];

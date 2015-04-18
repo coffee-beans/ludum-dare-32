@@ -5,7 +5,7 @@ if(typeof RunnerStat == "undefined") {
     RunnerStat.running = 0;
     RunnerStat.jumpUp = 1;
     RunnerStat.jumpDown = 2;
-};
+}
 
 var AnimationLayer = cc.Layer.extend({
     spriteSheet: null,
@@ -91,11 +91,9 @@ var AnimationLayer = cc.Layer.extend({
                 event.getCurrentTarget().jump();
                 // this.jump();
               }
-
-              //otherwise shoot if it's x button
               if(keyCode == 88) {
-                //shoot the bread
-                cc.log("shoot bread");
+                //shoot toast
+                event.getCurrentTarget().shoot();
               }
           }
         }, this);
@@ -127,10 +125,10 @@ var AnimationLayer = cc.Layer.extend({
 
         // init jumpUpAction
         animFrames = [];
-        for (var i = 0; i < 4; i++) {
-            var str = "runnerJumpUp" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFrames.push(frame);
+        for (var j = 0; j < 4; j++) {
+            var str1 = "runnerJumpUp" + j + ".png";
+            var frame1 = cc.spriteFrameCache.getSpriteFrame(str1);
+            animFrames.push(frame1);
         }
 
         animation = new cc.Animation(animFrames, 0.2);
@@ -139,10 +137,10 @@ var AnimationLayer = cc.Layer.extend({
 
         // init jumpDownAction
         animFrames = [];
-        for (var i = 0; i < 2; i++) {
-            var str = "runnerJumpDown" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFrames.push(frame);
+        for (var k = 0; k < 2; k++) {
+            var str2 = "runnerJumpDown" + k + ".png";
+            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+            animFrames.push(frame2);
         }
 
         animation = new cc.Animation(animFrames, 0.3);
@@ -185,7 +183,10 @@ var AnimationLayer = cc.Layer.extend({
 
         }
     },
-
+    shoot: function () {
+      cc.log("shoot");
+      cc.audioEngine.playEffect(res.toast_mp3);
+    },
     getEyeX:function () {
         return this.sprite.getPositionX() - g_runnerStartX;
     },
@@ -205,7 +206,7 @@ var AnimationLayer = cc.Layer.extend({
                 this.sprite.runAction(this.jumpDownAction);
             }
         } else if (this.stat == RunnerStat.jumpDown) {
-            if (vel.y == 0) {
+            if (vel.y === 0) {
                 this.stat = RunnerStat.running;
                 this.sprite.stopAllActions();
                 this.sprite.runAction(this.runningAction);

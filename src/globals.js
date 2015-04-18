@@ -8,7 +8,7 @@ if(typeof TagOfLayer == "undefined") {
     TagOfLayer.Animation = 2;
     TagOfLayer.GameLayer = 3;
     TagOfLayer.Status = 4;
-};
+}
 
 // collision type for chipmunk
 if(typeof SpriteTag == "undefined") {
@@ -16,4 +16,5 @@ if(typeof SpriteTag == "undefined") {
     SpriteTag.runner = 0;
     SpriteTag.coin = 1;
     SpriteTag.rock = 2;
-};
+    SpriteTag.toast = 3;
+}
