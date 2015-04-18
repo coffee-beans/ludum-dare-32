@@ -15,11 +15,11 @@ var res = {
     background_mp3 : "res/background.mp3",
     jump_mp3 : "res/jump.mp3",
     pickup_coin_mp3 : "res/pickup_coin.mp3",
-    toast_mp3: "res/toast.mp3"
+    toast_mp3: "res/toast.mp3",
+    toast_png: "res/toast.png"
 };
 
 var g_resources = [
-    //image
     res.helloBG_png,
     res.start_n_png,
     res.start_s_png,
@@ -36,5 +36,6 @@ var g_resources = [
     res.background_mp3,
     res.jump_mp3,
     res.pickup_coin_mp3,
-    res.toast_mp3
+    res.toast_mp3,
+    res.toast_png
 ];
