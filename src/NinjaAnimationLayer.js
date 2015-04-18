@@ -169,7 +169,6 @@ var NinjaAnimationLayer = cc.Layer.extend({
         // check and update runner stat
         var vel = this.body.getVel();
 
-        // cc.log("vel: " + vel);
         this.secondsToBeCaught--;
         var per = this.secondsToBeCaught / g_secondsToCatchNinja;
         var newVelocity = cp.v(g_runningSpeed * per, 0);

@@ -84,7 +84,7 @@ var AnimationLayer = cc.Layer.extend({
         cc.eventManager.addListener({
           event: cc.EventListener.KEYBOARD,
           onKeyPressed: function(keyCode, event) {
-              cc.log("this key " + keyCode.toString() + " was pressed");
+              // cc.log("this key " + keyCode.toString() + " was pressed");
               if(keyCode == 38 || keyCode == 32) {
                 //jump
                 var rtn = event.getCurrentTarget().recognizer.endPoint();
