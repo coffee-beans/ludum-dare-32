@@ -6,5 +6,4 @@ cc.game.onStart = function(){
       cc.director.runScene(new MenuScene());
   }, this);
 };
-
 cc.game.run();

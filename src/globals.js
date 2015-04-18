@@ -1,6 +1,7 @@
 var g_groundHeight = 57;
 var g_runnerStartX = 80;
-
+var g_runningSpeed = 200;
+var g_ninjaGroundHeight = 77;
 if(typeof TagOfLayer == "undefined") {
     var TagOfLayer = {};
     TagOfLayer.background = 0;
@@ -17,4 +18,5 @@ if(typeof SpriteTag == "undefined") {
     SpriteTag.coin = 1;
     SpriteTag.rock = 2;
     SpriteTag.toast = 3;
+    SpriteTag.ninja = 4;
 }
