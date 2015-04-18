@@ -59,7 +59,7 @@ var AnimationLayer = cc.Layer.extend({
         // init body
         this.body = new cp.Body(1, cp.momentForBox(1, contentSize.width, contentSize.height));
         this.body.p = cc.p(g_runnerStartX, g_groundHeight + contentSize.height / 2);
-        this.body.applyImpulse(cp.v(150, 0), cp.v(0, 0));//run speed
+        this.body.applyImpulse(cp.v(g_runningSpeed, 0), cp.v(0, 0));//run speed
         this.space.addBody(this.body);
         //init shape
         this.shape = new cp.BoxShape(this.body, contentSize.width - 14, contentSize.height);
