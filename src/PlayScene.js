@@ -58,11 +58,16 @@ var PlayScene = cc.Scene.extend({
         cc.director.pause();
         this.addChild(new GameOverLayer());
     },
-
     collisionToastBegin: function (arbiter, space) {
       cc.log("==box destroyed");
       var shapes = arbiter.getShapes();
       this.shapesToRemove.push(shapes[1]);
+    },
+    onNinjaCatch:function() {
+        cc.audioEngine.stopMusic();
+
+        cc.director.pause();
+        this.addChild(new GameOverLayer());
     },
     onEnter:function () {
         this._super();
@@ -96,6 +101,16 @@ var PlayScene = cc.Scene.extend({
         this.shapesToRemove = [];
 
         var animationLayer = this.gameLayer.getChildByTag(TagOfLayer.Animation);
+        var ninjaAnimationLayer = this.gameLayer.getChildByTag(TagOfLayer.NinjaAnimation);
+        //our runner
+        var runner = animationLayer.sprite;
+        var ninja = ninjaAnimationLayer.sprite;
+        // cc.log("runner x: " + runner.getPositionX());
+        if(runner.getPositionX() >= ninja.getPositionX()) {
+          cc.log("GAME OVAR YOU WIN");
+          this.onNinjaCatch();
+        }
+
         var eyeX = animationLayer.getEyeX();
 
         this.gameLayer.setPosition(cc.p(-eyeX,0));

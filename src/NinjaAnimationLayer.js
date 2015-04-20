@@ -5,6 +5,7 @@ var NinjaAnimationLayer = cc.Layer.extend({
     space:null,
     body:null,
     shape:null,
+    secondsToBeCaught:null,
 
     recognizer:null,
     stat:RunnerStat.running,// init with running status
@@ -28,6 +29,8 @@ var NinjaAnimationLayer = cc.Layer.extend({
         cc.spriteFrameCache.addSpriteFrames(res.runner_plist);
         this.spriteSheet = new cc.SpriteBatchNode(res.runner_png);
         this.addChild(this.spriteSheet);
+
+        this.secondsToBeCaught = g_secondsToCatchNinja;
 
         //init  actions
         this.initAction();
@@ -165,6 +168,12 @@ var NinjaAnimationLayer = cc.Layer.extend({
 
         // check and update runner stat
         var vel = this.body.getVel();
+
+        this.secondsToBeCaught--;
+        var per = this.secondsToBeCaught / g_secondsToCatchNinja;
+        var newVelocity = cp.v(g_runningSpeed * per, 0);
+        this.body.setVel(newVelocity);
+
         if (this.stat == RunnerStat.jumpUp) {
             if (vel.y < 0.1) {
                 this.stat = RunnerStat.jumpDown;
