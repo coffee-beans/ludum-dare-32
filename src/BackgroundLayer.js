@@ -43,15 +43,15 @@ var BackgroundLayer = cc.Layer.extend({
 
     loadObjects:function (map, mapIndex) {
         // add coins
-        var coinGroup = map.getObjectGroup("coin");
-        var coinArray = coinGroup.getObjects();
-        for (var i = 0; i < coinArray.length; i++) {
-            var coin = new Coin(this.spriteSheet,
-                this.space,
-                cc.p(coinArray[i]["x"] + this.mapWidth * mapIndex,coinArray[i]["y"]));
-            coin.mapIndex = mapIndex;
-            this.objects.push(coin);
-        }
+       // var coinGroup = map.getObjectGroup("coin");
+      //var coinArray = coinGroup.getObjects();
+       // for (var i = 0; i < coinArray.length; i++) {
+        //    var coin = new Coin(this.spriteSheet,
+        //        this.space,
+        //        cc.p(coinArray[i]["x"] + this.mapWidth * mapIndex,coinArray[i]["y"]));
+        //    coin.mapIndex = mapIndex;
+        //    this.objects.push(coin);
+        //}
 
         // add rock
         var rockGroup = map.getObjectGroup("rock");
@@ -94,7 +94,7 @@ var BackgroundLayer = cc.Layer.extend({
             return false;
         }
 
-        if (0 == newMapIndex % 2) {
+        if (0 === newMapIndex % 2) {
             // change mapSecond
             this.map01.setPositionX(this.mapWidth * (newMapIndex + 1));
             this.loadObjects(this.map01, newMapIndex + 1);

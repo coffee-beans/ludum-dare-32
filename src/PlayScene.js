@@ -29,11 +29,13 @@ var PlayScene = cc.Scene.extend({
         //add a ninja floor here too... wall bottom?
 
         // setup chipmunk CollisionHandler
-        this.space.addCollisionHandler(SpriteTag.runner, SpriteTag.coin,
-        this.collisionCoinBegin.bind(this), null, null, null);
+        //this.space.addCollisionHandler(SpriteTag.runner, SpriteTag.coin,
+        //this.collisionCoinBegin.bind(this), null, null, null);
         //how does it know which sprites have which tags!??!?!?!?!?
         this.space.addCollisionHandler(SpriteTag.runner, SpriteTag.rock,
-        this.collisionRockBegin.bind(this), null, null, null);
+          this.collisionRockBegin.bind(this), null, null, null);
+        this.space.addCollisionHandler(SpriteTag.toast, SpriteTag.rock,
+          this.collisionToastBegin.bind(this), null, null, null);
     },
 
     collisionCoinBegin:function (arbiter, space) {
@@ -41,7 +43,7 @@ var PlayScene = cc.Scene.extend({
         // shapes[0] is runner
         this.shapesToRemove.push(shapes[1]);
 
-        cc.audioEngine.playEffect(res.pickup_coin_mp3);
+        //cc.audioEngine.playEffect(res.pickup_coin_mp3);
 
         var statusLayer = this.getChildByTag(TagOfLayer.Status);
         statusLayer.addCoin(1);
@@ -57,6 +59,11 @@ var PlayScene = cc.Scene.extend({
         this.addChild(new GameOverLayer());
     },
 
+    collisionToastBegin: function (arbiter, space) {
+      cc.log("==box destroyed");
+      var shapes = arbiter.getShapes();
+      this.shapesToRemove.push(shapes[1]);
+    },
     onEnter:function () {
         this._super();
         this.initPhysics();

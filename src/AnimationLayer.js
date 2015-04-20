@@ -10,15 +10,17 @@ if(typeof RunnerStat == "undefined") {
 var AnimationLayer = cc.Layer.extend({
     spriteSheet: null,
     runningAction: null,
+    shootingAction: null,
     sprite: null,
-    space:null,
-    body:null,
-    shape:null,
-
-    recognizer:null,
-    stat:RunnerStat.running,// init with running status
-    jumpUpAction:null,
-    jumpDownAction:null,
+    space: null,
+    body: null,
+    shape: null,
+    recognizer: null,
+    jumpUpAction: null,
+    jumpDownAction: null,
+    runnerWidth: null,
+    runnerHeight: null,
+    stat: RunnerStat.running, // init with running status
 
     ctor:function (space) {
         this._super();
@@ -56,6 +58,8 @@ var AnimationLayer = cc.Layer.extend({
         //create runner through physic engine
         this.sprite = new cc.PhysicsSprite("#runner0.png");
         var contentSize = this.sprite.getContentSize();
+        this.runnerHeight = contentSize.height;
+        this.runnerWidth = contentSize.width;
         // init body
         this.body = new cp.Body(1, cp.momentForBox(1, contentSize.width, contentSize.height));
         this.body.p = cc.p(g_runnerStartX, g_groundHeight + contentSize.height / 2);
@@ -173,7 +177,7 @@ var AnimationLayer = cc.Layer.extend({
 
     jump:function () {
         cc.log("jump");
-        if (this.stat == RunnerStat.running) {
+        if (this.stat == RunnerStat.running && !cc.director.isPaused()) {
             this.body.applyImpulse(cp.v(0, 250), cp.v(0, 0));
             this.stat = RunnerStat.jumpUp;
             this.sprite.stopAllActions();
@@ -184,8 +188,15 @@ var AnimationLayer = cc.Layer.extend({
         }
     },
     shoot: function () {
-      cc.log("shoot");
-      cc.audioEngine.playEffect(res.toast_mp3);
+      if( this.stat == RunnerStat.running && !cc.director.isPaused() ){
+        var toasts = [];
+        var toast = new Toast( this.space, this.runnerWidth, this.runnerHeight );
+        toasts.push(toast);
+        cc.log("shoot");
+        //render shootingAction
+        
+        cc.audioEngine.playEffect(res.toast_mp3);
+      }
     },
     getEyeX:function () {
         return this.sprite.getPositionX() - g_runnerStartX;

@@ -2,6 +2,7 @@ var g_groundHeight = 57;
 var g_runnerStartX = 80;
 var g_runningSpeed = 200;
 var g_ninjaGroundHeight = 77;
+
 if(typeof TagOfLayer == "undefined") {
     var TagOfLayer = {};
     TagOfLayer.background = 0;
